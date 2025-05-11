@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -9,6 +10,9 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from the 'out' directory
+app.use(express.static(path.join(__dirname, 'out')));
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
@@ -56,11 +60,6 @@ const verifyToken = (req, res, next) => {
     res.status(403).json({ message: 'No token provided' });
   }
 };
-
-// Sample route for testing
-app.get('/', (req, res) => {
-  res.send('LeadForm API is running');
-});
 
 // Routes for Leads
 app.post('/api/leads', async (req, res) => {
@@ -160,8 +159,15 @@ app.post('/api/verify-token', (req, res) => {
   }
 });
 
+// Route to handle client-side routing - should be placed after API routes
+app.get('*', (req, res) => {
+  // For all non-API routes, serve the index.html file
+  res.sendFile(path.join(__dirname, 'out', 'index.html'));
+});
+
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  console.log(`Serving static files from ${path.join(__dirname, 'out')}`);
 });

@@ -179,7 +179,7 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>Contact Us</h1>
         <p className={styles.description}>
-          Fill out the form below and we'll get back to you as soon as possible.
+          Fill out the form below and we&apos;ll get back to you as soon as possible.
         </p>
 
         <div className={styles.formContainer}>
