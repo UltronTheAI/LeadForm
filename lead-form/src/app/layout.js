@@ -12,25 +12,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "LeadForm | Contact Us",
-  description: "Get in touch with our team. Submit your information and we'll get back to you as soon as possible.",
-  keywords: ["contact form", "lead collection", "get in touch", "contact us", "inquiry form"],
+  title: "Job Lead Form | Part-Time Opportunities",
+  description: "Looking for part-time work? Apply now to earn money in your spare time. Submit your information and our HR team will contact you.",
+  keywords: ["part-time job", "earn money", "job application", "job opportunity", "flexible work", "employment"],
   authors: [{ name: "Swaraj Puppalwar", url: "https://github.com/UltronTheAI" }],
   creator: "UltronTheAI",
-  publisher: "LeadForm",
+  publisher: "Job Lead Form",
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://leadform.onrender.com"),
   openGraph: {
-    title: "LeadForm | Contact Us",
-    description: "Get in touch with our team. Submit your information and we'll get back to you as soon as possible.",
+    title: "Job Lead Form | Part-Time Opportunities",
+    description: "Looking for part-time work? Apply now to earn money in your spare time. Submit your information and our HR team will contact you.",
     url: "/",
-    siteName: "LeadForm",
+    siteName: "Job Lead Form",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "LeadForm | Contact Us",
-    description: "Get in touch with our team. Submit your information and we'll get back to you as soon as possible.",
+    title: "Job Lead Form | Part-Time Opportunities",
+    description: "Looking for part-time work? Apply now to earn money in your spare time. Submit your information and our HR team will contact you.",
     creator: "@UltronTheAI",
   },
   robots: {

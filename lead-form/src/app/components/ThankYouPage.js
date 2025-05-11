@@ -7,17 +7,17 @@ const ThankYouPage = ({ onReset, wasUpdated }) => {
       <div className={styles.checkmarkContainer}>
         <div className={styles.checkmark}>✓</div>
       </div>
-      <h2 className={styles.thankYouTitle}>Thank You!</h2>
+      <h2 className={styles.thankYouTitle}>Application Received!</h2>
       <p className={styles.thankYouMessage}>
         {wasUpdated 
-          ? "Your information has been updated successfully. We'll use this updated information to contact you." 
-          : "Your form has been successfully submitted. We appreciate your interest and will get back to you soon."}
+          ? "Your application information has been updated successfully. Our HR team will review your updated details and contact you soon." 
+          : "Your job application has been successfully submitted. Our HR team will review your application and contact you about part-time opportunities that match your profile."}
       </p>
       <button 
         className={styles.resetButton}
         onClick={onReset}
       >
-        Submit Another Form
+        Submit Another Application
       </button>
     </div>
   );

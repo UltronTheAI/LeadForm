@@ -3,9 +3,9 @@ export const revalidate = false;
 
 export default function manifest() {
   return {
-    name: 'LeadForm',
-    short_name: 'LeadForm',
-    description: 'Contact form and lead management application',
+    name: 'Job Lead Form',
+    short_name: 'Job Lead',
+    description: 'Part-time job opportunities application form',
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',

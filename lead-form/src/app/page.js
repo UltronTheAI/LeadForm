@@ -106,7 +106,7 @@ export default function Home() {
         return (
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.formGroup}>
-              <label htmlFor="name">Name *</label>
+              <label htmlFor="name">Full Name *</label>
               <input
                 type="text"
                 id="name"
@@ -114,13 +114,13 @@ export default function Home() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                placeholder="Your name"
+                placeholder="Your full name"
                 className={styles.input}
               />
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="email">Email *</label>
+              <label htmlFor="email">Email Address *</label>
               <input
                 type="email"
                 id="email"
@@ -134,26 +134,27 @@ export default function Home() {
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="phone">Phone (optional)</label>
+              <label htmlFor="phone">Phone Number *</label>
               <input
                 type="tel"
                 id="phone"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
+                required
                 placeholder="Your phone number"
                 className={styles.input}
               />
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="message">Message (optional)</label>
+              <label htmlFor="message">Tell us about your availability (optional)</label>
               <textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Your message"
+                placeholder="Your availability and any questions you have"
                 className={styles.textarea}
                 rows="4"
               ></textarea>
@@ -164,7 +165,7 @@ export default function Home() {
               className={styles.submitButton}
               disabled={formState.view === "loading"}
             >
-              Submit
+              Submit Application
             </button>
 
             {formState.error && (
@@ -177,18 +178,15 @@ export default function Home() {
 
   const jsonLdData = {
     "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": "LeadForm Contact Page",
-    "description": "Contact us for more information about our services.",
-    "mainEntity": {
+    "@type": "JobPosting",
+    "title": "Part-Time Job Opportunity",
+    "description": "Apply for our flexible part-time positions and earn money in your spare time.",
+    "datePosted": new Date().toISOString(),
+    "employmentType": "PART_TIME",
+    "hiringOrganization": {
       "@type": "Organization",
-      "name": "LeadForm",
-      "url": "https://leadform.onrender.com",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "Customer Support",
-        "availableLanguage": "English"
-      }
+      "name": "Job Lead Form",
+      "url": "https://leadform.onrender.com"
     }
   };
 
@@ -197,9 +195,9 @@ export default function Home() {
       <JsonLd data={jsonLdData} />
       <div className={styles.page}>
         <main className={styles.main}>
-          <h1 className={styles.title}>Contact Us</h1>
+          <h1 className={styles.title}>WANT TO EARN MONEY IN A PART-TIME JOB?</h1>
           <p className={styles.description}>
-            Fill out the form below and we&apos;ll get back to you as soon as possible.
+            Fill out the form below to request information from our HR team about exciting part-time opportunities.
           </p>
 
           <div className={styles.formContainer}>
@@ -217,9 +215,6 @@ export default function Home() {
             >
               UltronTheAI
             </a>
-            <span className={styles.adminLinkContainer}>
-              <a href="/admin" className={styles.adminLink}>Admin</a>
-            </span>
           </p>
         </footer>
       </div>
