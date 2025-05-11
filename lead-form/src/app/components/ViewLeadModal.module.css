@@ -1,0 +1,184 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 10px;
+  padding: 0;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-out;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.modalTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+  color: #333;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.closeButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #333;
+}
+
+.leadDetails {
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.detailRow {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.detailRow:last-child {
+  margin-bottom: 0;
+}
+
+.detailLabel {
+  font-weight: 600;
+  width: 120px;
+  flex-shrink: 0;
+  color: #555;
+}
+
+.detailValue {
+  flex: 1;
+  color: #333;
+  word-break: break-word;
+}
+
+.messageBox {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1rem;
+  white-space: pre-wrap;
+  min-height: 80px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.buttonContainer {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #eaeaea;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeModalButton {
+  background-color: #f2f2f2;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.closeModalButton:hover {
+  background-color: #e5e5e5;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .modalContent {
+    background-color: #1a1a1a;
+  }
+  
+  .modalHeader {
+    border-bottom-color: #333;
+  }
+  
+  .modalTitle {
+    color: #f5f5f5;
+  }
+  
+  .closeButton {
+    color: #aaa;
+  }
+  
+  .closeButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #f5f5f5;
+  }
+  
+  .detailLabel {
+    color: #aaa;
+  }
+  
+  .detailValue {
+    color: #f5f5f5;
+  }
+  
+  .messageBox {
+    background-color: #252525;
+  }
+  
+  .buttonContainer {
+    border-top-color: #333;
+  }
+  
+  .closeModalButton {
+    background-color: #333;
+    color: #f5f5f5;
+  }
+  
+  .closeModalButton:hover {
+    background-color: #444;
+  }
+} 
