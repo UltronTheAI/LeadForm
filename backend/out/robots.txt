@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/*
+
+Host: https://leadform.onrender.com
+Sitemap: https://leadform.onrender.com/sitemap.xml

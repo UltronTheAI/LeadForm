@@ -4,6 +4,7 @@ import { useState } from "react";
 import styles from "./page.module.css";
 import LoadingAnimation from "./components/LoadingAnimation";
 import ThankYouPage from "./components/ThankYouPage";
+import JsonLd from "./components/JsonLd";
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -174,34 +175,54 @@ export default function Home() {
     }
   };
 
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>Contact Us</h1>
-        <p className={styles.description}>
-          Fill out the form below and we&apos;ll get back to you as soon as possible.
-        </p>
+  const jsonLdData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "LeadForm Contact Page",
+    "description": "Contact us for more information about our services.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "LeadForm",
+      "url": "https://leadform.onrender.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Support",
+        "availableLanguage": "English"
+      }
+    }
+  };
 
-        <div className={styles.formContainer}>
-          {renderFormContent()}
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <p className={styles.copyright}>
-          &copy; {new Date().getFullYear()} Swaraj Puppalwar | 
-          <a 
-            href="https://github.com/UltronTheAI"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.developerLink}
-          >
-            UltronTheAI
-          </a>
-          <span className={styles.adminLinkContainer}>
-            <a href="/admin" className={styles.adminLink}>Admin</a>
-          </span>
-        </p>
-      </footer>
-    </div>
+  return (
+    <>
+      <JsonLd data={jsonLdData} />
+      <div className={styles.page}>
+        <main className={styles.main}>
+          <h1 className={styles.title}>Contact Us</h1>
+          <p className={styles.description}>
+            Fill out the form below and we&apos;ll get back to you as soon as possible.
+          </p>
+
+          <div className={styles.formContainer}>
+            {renderFormContent()}
+          </div>
+        </main>
+        <footer className={styles.footer}>
+          <p className={styles.copyright}>
+            &copy; {new Date().getFullYear()} Swaraj Puppalwar | 
+            <a 
+              href="https://github.com/UltronTheAI"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.developerLink}
+            >
+              UltronTheAI
+            </a>
+            <span className={styles.adminLinkContainer}>
+              <a href="/admin" className={styles.adminLink}>Admin</a>
+            </span>
+          </p>
+        </footer>
+      </div>
+    </>
   );
 }
