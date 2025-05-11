@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const path = require('path');
+const fs = require('fs');
 require('dotenv').config();
 
 const app = express();
@@ -60,6 +61,11 @@ const verifyToken = (req, res, next) => {
     res.status(403).json({ message: 'No token provided' });
   }
 };
+
+// Sample route for testing
+app.get('/', (req, res) => {
+  res.send('LeadForm API is running');
+});
 
 // Routes for Leads
 app.post('/api/leads', async (req, res) => {
@@ -159,10 +165,42 @@ app.post('/api/verify-token', (req, res) => {
   }
 });
 
-// Route to handle client-side routing - should be placed after API routes
-app.get('*', (req, res) => {
-  // For all non-API routes, serve the index.html file
+// Instead of using a wildcard, set specific routes for frontend pages
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'out', 'index.html'));
+});
+
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'out', 'admin.html'));
+});
+
+// Fallback route for any other requests
+app.use((req, res, next) => {
+  // Skip API routes
+  if (req.url.startsWith('/api')) {
+    return next();
+  }
+  
+  // Clean up URL to prevent path traversal
+  const cleanUrl = req.url.split('?')[0]; // Remove query parameters
+  
+  // Try to serve the file directly first
+  const filePath = path.join(__dirname, 'out', cleanUrl);
+  
+  // Use try-catch with synchronous fs.existsSync for better error handling
+  try {
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+      // File exists, serve it
+      return res.sendFile(filePath);
+    }
+    
+    // File doesn't exist, serve index.html
+    return res.sendFile(path.join(__dirname, 'out', 'index.html'));
+  } catch (error) {
+    console.error('Error serving static file:', error);
+    // In case of any error, default to index.html
+    return res.sendFile(path.join(__dirname, 'out', 'index.html'));
+  }
 });
 
 // Start the server

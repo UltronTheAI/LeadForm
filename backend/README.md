@@ -77,4 +77,18 @@ For production deployment to platforms like Heroku, Render, or DigitalOcean:
 ## Troubleshooting
 
 - If API calls are failing, check that the `NEXT_PUBLIC_API_URL` is set correctly in the frontend's `.env.production` file before building
-- If the static files are not showing, make sure the `out` directory exists in the backend folder 
+- If the static files are not showing, make sure the `out` directory exists in the backend folder
+- If you encounter a `path-to-regexp` error when starting the server, it's likely due to an invalid route pattern. The server uses a robust approach to serve static files without using problematic wildcard patterns.
+
+## Route Handling
+
+The server handles routes in the following order:
+
+1. Static files from the `out` directory (CSS, JS, images, etc.)
+2. API endpoints under `/api/*` routes
+3. Specific frontend routes (`/`, `/admin`)
+4. Any other requests are handled by:
+   - Checking if the file exists in the `out` directory
+   - Falling back to serving `index.html` for client-side routing
+
+This approach ensures compatibility with Express's routing system while supporting client-side routing in Next.js. 
